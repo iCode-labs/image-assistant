@@ -10,7 +10,7 @@
   ],
 
   "icons": {
-    "16": "images.png"
+    "16": "icon.png"
   },
   "background": {
     "scripts": ["script.js"]

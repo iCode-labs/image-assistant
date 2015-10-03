@@ -24,8 +24,10 @@ func main() {
 
 		resp, _ := http.Get(url)
 		defer resp.Body.Close()
+		fileType := strings.Split(resp.Header["Content-Type"][0], "/")[1]
+
 		body, _ := ioutil.ReadAll(resp.Body)
-		ioutil.WriteFile("./download/"+fileName, body, 777)
+		ioutil.WriteFile("./download/"+fileName+"."+fileType, body, 777)
 	})
 
 	logger.Info("Server started on:8080")

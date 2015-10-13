@@ -1,7 +1,7 @@
 {
   "name": "image-assistant",
   "version": "0.1",
-  "manifest_version": 1,
+  "manifest_version": 2,
   "description": "collect images to persional server",
 
   "permissions": [

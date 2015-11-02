@@ -2,7 +2,6 @@ chrome.contextMenus.create({
   title: "收藏图片",
   contexts: ["image"],
   onclick: function(info) {
-
     handleImageURL(info.srcUrl);
   }
 
@@ -11,7 +10,7 @@ chrome.contextMenus.create({
 function handleImageURL(url) {
   var name = prompt("输入图片的自定义名称");
   var xhr = new XMLHttpRequest();
-  var reqUrl = "http://www.mirana.me:8080/store?url=" + url;
+  var reqUrl = "http://localhost:8080/save?url=" + url;
   if (name)
     reqUrl += "&name=" + name;
   xhr.open("get", reqUrl);

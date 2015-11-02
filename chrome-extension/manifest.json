@@ -2,7 +2,7 @@
   "name": "image-assistant",
   "version": "0.1",
   "manifest_version": 2,
-  "description": "collect images to persional server",
+  "description": "collect images to local pc",
 
   "permissions": [
     "contextMenus",

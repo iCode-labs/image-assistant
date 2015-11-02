@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/flex1988/go-level-logger"
 	"io/ioutil"
-	"os"
 	"os/user"
 )
 
@@ -15,16 +14,23 @@ type Configuration struct {
 
 var (
 	config Configuration
+	log    *logger.Logger
 )
 
-func main() {
-	logger, _ := logger.New()
-	for _, v := range os.Args {
-		logger.Info(v)
-	}
-	usr, _ := user.Current()
+func loadConfig(path string) error {
+	b, _ := ioutil.ReadFile(path)
+	return json.Unmarshal(b, &config)
+}
 
-	b, _ := ioutil.ReadFile(usr.HomeDir + "/.imagerc")
-	json.Unmarshal(b, &config)
-	logger.Info(config.ACCESS_KEY)
+func init() {
+	log, _ = logger.New()
+	usr, _ := user.Current()
+	err := loadConfig(usr.HomeDir + "/.imagerc")
+	if err != nil {
+		log.Error("没有发现配置文件")
+	}
+}
+
+func main() {
+	log.Info(config.ACCESS_KEY)
 }
